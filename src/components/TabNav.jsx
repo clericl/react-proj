@@ -4,7 +4,7 @@ import Tab from './Tab'
 class TabNav extends React.Component {
   render() {
     return (
-      <nav>
+      <nav className="tab-nav">
         <Tab tabName="Cats" />
         <Tab tabName="Dogs" />
         <Tab tabName="Todos" />

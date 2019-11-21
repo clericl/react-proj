@@ -8,6 +8,7 @@ export const FETCH_CAT_FACT = 'FETCH_CAT_FACT'
 export const RECEIVE_CAT_FACT = 'RECEIVE_CAT_FACT'
 export const DELETE_CAT_FACT = 'DELETE_CAT_FACT'
 export const ADD_TODO = 'ADD_TODO'
+export const RECEIVE_TODO = 'RECEIVE_TODO'
 export const EDIT_TODO = 'EDIT_TODO'
 export const DELETE_TODO = 'DELETE_TODO'
 

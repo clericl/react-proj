@@ -1,8 +1,7 @@
 import React from 'react'
+import TodoItem from './TodoItem'
 import {
-  addTodo,
-  editTodo,
-  deleteTodo
+  addTodo
 } from '../redux/actions'
 import { connect } from 'react-redux'
 
@@ -15,6 +14,21 @@ class TodoPane extends React.Component {
     }
   }
 
+  handleChange = (e) => {
+    this.setState({
+      value: e.target.value
+    })
+  }
+
+  handleAddClick = () => {
+    const { addTodo } = this.props
+    const { value } = this.state
+
+    addTodo({
+      body: value
+    })
+  }
+
   render() {
     const { value } = this.state
     const { items } = this.props
@@ -24,16 +38,14 @@ class TodoPane extends React.Component {
         <ul>
           {
             items.map((todo) => (
-              <li>
-                {todo.body}
-                <button>edit</button>
-                <button>delete</button>
-              </li>
+              <TodoItem todo={todo} />
             ))
           }
         </ul>
-        <textarea value={value} />
-        <button>todo!</button>
+        <div className="input">
+          <textarea value={value} onChange={this.handleChange} />
+          <button onClick={this.handleAddClick}>todo!</button>
+        </div>
       </div>
     )
   }
@@ -44,9 +56,7 @@ const mapStateToProps = (state) => ({
 })
 
 const mapDispatchToProps = ({
-  addTodo,
-  editTodo,
-  deleteTodo
+  addTodo
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(TodoPane)

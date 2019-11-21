@@ -6,6 +6,18 @@ import {
 } from '../redux/actions'
 
 class DogPane extends React.Component {
+  handleAddClick = () => {
+    const { addDogFact } = this.props
+
+    addDogFact()
+  }
+
+  handleDeleteClick = (id) => {
+    const { deleteDogFact } = this.props
+
+    deleteDogFact(id)
+  }
+
   render() {
     const { items } = this.props
 
@@ -15,13 +27,13 @@ class DogPane extends React.Component {
           {
             items.map((item) => (
               <li>
-                {item.fact}
-                <button>delete</button>
+                {item.facts}
+                <button onClick={() => this.handleDeleteClick(item.id)}>delete</button>
               </li>
             ))
           }
         </ul>
-        <button>Dog fact!</button>
+        <button className="input" onClick={this.handleAddClick}>Dog fact!</button>
       </div>
     )
   }

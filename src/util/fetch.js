@@ -5,7 +5,7 @@ export function fetchCatFact() {
   )
 }
 export function fetchDogFact() {
-  const url = 'http://dog-api.kinduff.com/api/facts'
+  const url = 'https://cors-anywhere.herokuapp.com/http://dog-api.kinduff.com/api/facts'
   return fetch(url).then(
     res => (res)
   )

@@ -11,13 +11,18 @@ import {
 } from '../util/fetch'
 
 function createDogSaga() {
+  let index = 0
+
   function* fetchDogFactSaga() {
     const res = yield fetchDogFact()
     const fact = yield res.json()
 
     yield put({
       type: RECEIVE_DOG_FACT,
-      payload: fact
+      payload: {
+        ...fact,
+        id: index++
+      }
     })
   }
 

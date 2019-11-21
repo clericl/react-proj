@@ -4,6 +4,7 @@ import {
 } from 'redux-saga/effects'
 import createCatSaga from './catSaga'
 import createDogSaga from './dogSaga'
+import createTodoSaga from './todoSaga'
 
 function* rootSaga() {
   const { watchFetchCatFactSaga } = createCatSaga()
@@ -13,6 +14,10 @@ function* rootSaga() {
   const { watchFetchDogFactSaga } = createDogSaga()
 
   yield spawn(watchFetchDogFactSaga)
+
+  const { watchAddTodoSaga } = createTodoSaga()
+
+  yield spawn(watchAddTodoSaga)
 }
 
 export default rootSaga

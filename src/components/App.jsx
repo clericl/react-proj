@@ -3,20 +3,41 @@ import TabNav from './TabNav'
 import CatPane from './CatPane'
 import DogPane from './DogPane'
 import TodoPane from './TodoPane'
+import { connect } from 'react-redux'
 
-function App({ tabName }) {
-  const paneComponent = {
-    "Cats": <CatPane />,
-    "Dogs": <DogPane />,
-    "Todos": <TodoPane />
+import './app.scss'
+
+function App({ activeTab }) {
+  let component
+
+  switch (activeTab) {
+    case "Cats":
+      component = <CatPane />
+      break
+
+    case "Dogs":
+      component = <DogPane />
+      break
+
+    case "Todos":
+      component = <TodoPane />
+      break
+
+    default:
+      component = null
+      break
   }
 
   return (
     <div className="app-wrap">
       <TabNav />
-      { paneComponent[tabName] }
+      { component }
     </div>
   )
 }
 
-export default App
+const mapStateToProps = (state) => ({
+  activeTab: state.tabs.activeTab
+})
+
+export default connect(mapStateToProps)(App)

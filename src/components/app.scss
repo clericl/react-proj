@@ -1,0 +1,52 @@
+.app-wrap {
+  width: 500px;
+  height: 500px;
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: stretch;
+
+  .tab-nav {
+    display: flex;
+    height: 30px;
+
+    .tab {
+      height: 30px;
+      flex: auto;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background-color: rgb(0, 165, 165);
+      border-radius: 5px 5px 0 0;
+
+      &.active {
+        border-left: 1px solid white;
+        border-right: 1px solid white;
+        background-color: rgb(129, 222, 222);
+      }
+
+      &:first-of-type {
+        border-left: none;
+      }
+
+      &:last-of-type {
+        border-right: none;
+      }
+    }
+  }
+
+  .pane {
+    position: relative;
+    flex: auto;
+    background-color: rgb(129, 222, 222);
+
+    .input {
+      position: absolute;
+      bottom: 10px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+  }
+}

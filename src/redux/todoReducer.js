@@ -1,47 +1,47 @@
 import {
-  ADD_TODO,
+  RECEIVE_TODO,
   EDIT_TODO,
   DELETE_TODO
 } from './actions'
 
 const defaultState = {
-  items: []
+  todos: []
 }
 
-let index = 1
-
-function itemReducer(state = defaultState, action) {
-  let newItems
+function todoReducer(state = defaultState, action) {
+  let newTodos
 
   switch (action.type) {
-    case ADD_TODO:
-      newItems = state.items.slice()
-      newItems.push({
-        ...action.payload,
-        id: index++
-      })
+    case RECEIVE_TODO:
+      newTodos = state.todos.slice()
+      newTodos.push(action.payload)
 
       return {
         ...state,
-        items: newItems
+        todos: newTodos
       }
 
     case EDIT_TODO:
-      newItems = state.items.slice()
-      const indexToEdit = state.items.findIndex((item) => item.id === action.payload.id)
-      if (indexToEdit) {
-        newItems[indexToEdit] = action.payload
+      newTodos = state.todos.slice()
+      const indexToEdit = state.todos.findIndex((todo) => todo.id === action.payload.id)
+      const todoToEdit = state.todos[indexToEdit]
+
+      if (todoToEdit) {
+        newTodos[indexToEdit] = {
+          ...todoToEdit,
+          ...action.payload
+        }
       }
       return {
         ...state,
-        items: newItems
+        todos: newTodos
       }
 
     case DELETE_TODO:
-      newItems = state.items.filter((item) => item.id !== action.payload)
+      newTodos = state.todos.filter((todo) => todo.id !== action.payload)
       return {
         ...state,
-        items: newItems
+        todos: newTodos
       }
 
     default:
@@ -49,4 +49,4 @@ function itemReducer(state = defaultState, action) {
   }
 }
 
-export default itemReducer
+export default todoReducer

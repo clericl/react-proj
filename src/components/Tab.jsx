@@ -24,8 +24,12 @@ function Tab(props) {
   )
 }
 
+const mapStateToProps = (state) => ({
+  activeTab: state.tabs.activeTab
+})
+
 const mapDispatchToProps = ({
   setActiveTab
 })
 
-export default connect(null, mapDispatchToProps)(Tab)
+export default connect(mapStateToProps, mapDispatchToProps)(Tab)

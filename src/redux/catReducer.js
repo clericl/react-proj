@@ -7,18 +7,13 @@ const defaultState = {
   facts: []
 }
 
-let index = 1
-
 function catReducer(state = defaultState, action) {
   let newFacts
 
   switch (action.type) {
     case RECEIVE_CAT_FACT:
       newFacts = state.facts.slice()
-      newFacts.push({
-        ...action.payload,
-        id: index++
-      })
+      newFacts.push(action.payload)
 
       return {
         ...state,

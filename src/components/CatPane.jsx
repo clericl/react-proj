@@ -6,6 +6,18 @@ import {
 import { connect } from 'react-redux'
 
 class CatPane extends React.Component {
+  handleAddClick = () => {
+    const { addCatFact } = this.props
+
+    addCatFact()
+  }
+
+  handleDeleteClick = (id) => {
+    const { deleteCatFact } = this.props
+
+    deleteCatFact(id)
+  }
+
   render() {
     const { items } = this.props
 
@@ -16,12 +28,12 @@ class CatPane extends React.Component {
             items.map((item) => (
               <li>
                 {item.fact}
-                <button>delete</button>
+                <button onClick={() => this.handleDeleteClick(item.id)}>delete</button>
               </li>
             ))
           }
         </ul>
-        <button>Cat fact!</button>
+        <button className="input" onClick={this.handleAddClick}>Cat fact!</button>
       </div>
     )
   }
